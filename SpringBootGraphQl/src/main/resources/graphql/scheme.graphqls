@@ -1,12 +1,51 @@
 # Query solo para hacer consultas
 type Query{
-    findStudentById(studentId: String) : Student
+    #Students method
+    findStudentById(studentId: String) : Student #usamos el objeto
     findAllStudents : [Student]
+
+    #courses method
+    findCourseById(courseId: String) : Course
+    findAllCourses: [Course]
 }
 
+# para crear toca hacer una mutacion o modificacion
+type Mutation {
+    #student method
+    createStudent(inputStudent: InputStudent): Student
+    deleteStudentById(studentId: String) : String
+
+    #course method
+    createCourse(inputCourse: InputCourse) : Course
+    deleteCourseById(courseId: String) : String
+
+}
+
+#objeto
 type Student {
     id: ID,
     name: String,
     lastName: String,
     age: Int
+}
+
+type Course {
+    id: ID,
+    name: String,
+    category: String,
+    teacher: String
+}
+
+#tipo de datos de entreada input
+input InputStudent {
+    name: String,
+    lastName: String,
+    age: Int,
+    courseId: String! # esto es obligatorio
+}
+
+input InputCourse {
+    name: String,
+    category: String!,
+    teacher: String!
 }
