@@ -1,7 +1,7 @@
 package com.validaciones.DTO;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,24 +17,29 @@ public class EmployeDTO {
     @NotNull //estas son validaciones
     @NotBlank
     private String name;
-    @NotNull
-    @NotBlank
-    private String lastName;
-    @NotNull
-    @NotBlank
-    private String email;
-    @NotBlank
-    @NotNull
-    private Long phone;
-    @NotBlank
-    @NotNull
-    private byte age;
-    @NotNull
-    private double height;
-    @NotNull
-    private boolean married;
-    @NotNull
-    private LocalDate dateOfBirth;
 
+    @NotNull
+    @NotBlank
+    @Size(min = 3, max = 10)
+    private String lastName;
+
+    @NotNull
+    @NotBlank
+    @Email
+    private String email;
+
+    private Long phone;
+
+    @Min(18)
+    @Max(25)
+    private byte age;
+
+    @Digits(integer = 2, fraction = 3)
+    private double height;
+    @AssertFalse
+    private boolean married;
+
+    private LocalDate dateOfBirth;
+    @Valid
     private DepartmentDTO departmentDTO;
 }
